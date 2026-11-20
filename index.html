@@ -1,0 +1,2378 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тил Ачар — Little Star Kyrgyz Reading Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Exact Specification Palette */
+      --main-bg: #F2F6FA;
+      --sidebar-bg: #1E3046;
+      --sidebar-secondary: #263D55;
+      --main-navy: #243449;
+      --featured-banner: #285574;
+      --active-nav: #C5E5EF;
+      --active-nav-text: #1E3046;
+      --pale-blue: #D9EDF4;
+      --icon-bg: #E6F2F6;
+      --cards-bg: #FFFFFF;
+      --border-color: #DCE7EF;
+      --primary-text: #26374D;
+      --secondary-text: #8195A8;
+      
+      --accent-gold: #D97706;
+      --accent-green: #059669;
+      --accent-green-light: #ECFDF5;
+      --accent-red: #DC2626;
+      --accent-red-light: #FEF2F2;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 20px;
+
+      --shadow-subtle: 0 1px 3px rgba(30, 48, 70, 0.05);
+      --shadow-card: 0 4px 12px rgba(30, 48, 70, 0.04), 0 1px 2px rgba(30, 48, 70, 0.02);
+      --shadow-hover: 0 8px 24px rgba(30, 48, 70, 0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--main-bg);
+      color: var(--primary-text);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    .platform-shell {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Fixed Desktop Sidebar */
+    .sidebar {
+      width: 235px;
+      background: var(--sidebar-bg);
+      color: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      flex-shrink: 0;
+      z-index: 100;
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .sidebar-header {
+      padding: 24px 20px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .brand-symbol {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: linear-gradient(135deg, #3b82f6, #0d9488);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    .brand-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.18rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.15;
+    }
+    .brand-subtitle {
+      font-size: 0.7rem;
+      color: #8da2b5;
+      letter-spacing: 0.03em;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      overflow-y: auto;
+    }
+
+    .nav-section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #627b94;
+      padding: 12px 10px 4px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      width: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #A9BCCF;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.15s ease;
+    }
+    .nav-item:hover {
+      background: var(--sidebar-secondary);
+      color: #FFFFFF;
+    }
+    .nav-item.active {
+      background: var(--active-nav);
+      color: var(--active-nav-text);
+      font-weight: 700;
+    }
+    .nav-item .icon {
+      font-size: 1.05rem;
+      width: 20px;
+      display: inline-flex;
+      justify-content: center;
+    }
+
+    .sidebar-footer {
+      padding: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.1);
+    }
+    .user-badge-mini {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .user-avatar-mini {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--featured-banner);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .user-info-mini {
+      overflow: hidden;
+      flex: 1;
+    }
+    .user-info-mini .name {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-info-mini .sub {
+      font-size: 0.7rem;
+      color: #8da2b5;
+    }
+
+    /* Main Work Area */
+    .main-viewport {
+      flex: 1;
+      padding: 32px 44px;
+      max-width: 1220px;
+      overflow-y: auto;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4 { color: var(--primary-text); }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin: 26px 0 14px;
+    }
+    h3 {
+      font-size: 1.02rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    p { color: var(--primary-text); }
+    .text-secondary { color: var(--secondary-text); }
+    .text-sm { font-size: 0.85rem; }
+
+    /* Cards */
+    .card {
+      background: var(--cards-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-card);
+      transition: all 0.2s ease;
+    }
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    /* Featured Banner */
+    .featured-banner {
+      background: var(--featured-banner);
+      color: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      margin-bottom: 26px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(40, 85, 116, 0.25);
+    }
+    .featured-banner::after {
+      content: "🪐 ✨ ⭐ 🦊";
+      position: absolute;
+      right: 28px;
+      bottom: 16px;
+      font-size: 3.2rem;
+      opacity: 0.22;
+      pointer-events: none;
+    }
+    .featured-banner h2 {
+      color: #FFFFFF;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .featured-banner p {
+      color: #E2EEF5;
+      font-size: 0.98rem;
+      max-width: 600px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Stats Triad */
+    .stats-triad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 26px;
+    }
+    .stat-card-clean {
+      background: var(--cards-bg);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      box-shadow: var(--shadow-subtle);
+    }
+    .stat-card-clean .label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--secondary-text);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .stat-card-clean .value {
+      font-size: 1.95rem;
+      font-weight: 800;
+      color: var(--main-navy);
+      margin-top: 4px;
+      line-height: 1.1;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .badge-pale { background: var(--pale-blue); color: var(--main-navy); }
+    .badge-green { background: var(--accent-green-light); color: var(--accent-green); }
+    .badge-amber { background: #FEF3C7; color: #92400E; }
+    .badge-gray  { background: #F3F4F6; color: #6B7280; }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--main-navy);
+      color: #FFFFFF;
+      border: none;
+      outline: none;
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .btn:hover {
+      background: #192737;
+      transform: translateY(-1px);
+    }
+    .btn-pale {
+      background: var(--active-nav);
+      color: var(--active-nav-text);
+    }
+    .btn-pale:hover {
+      background: #b1dbeb;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--primary-text);
+    }
+    .btn-outline:hover {
+      background: var(--main-bg);
+      border-color: #B5CBD8;
+    }
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      border-radius: 6px;
+    }
+
+    /* Forms */
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-family: inherit;
+      color: var(--primary-text);
+      background: #FFFFFF;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--main-navy);
+      box-shadow: 0 0 0 3px rgba(36, 52, 73, 0.1);
+    }
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary-text);
+      margin-bottom: 5px;
+    }
+
+    /* Tables */
+    .table-responsive {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      box-shadow: var(--shadow-subtle);
+    }
+    .table-clean {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .table-clean th {
+      background: #F8FAFD;
+      padding: 12px 16px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--secondary-text);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .table-clean td {
+      padding: 13px 16px;
+      border-bottom: 1px solid #EEF3F7;
+      font-size: 0.88rem;
+      vertical-align: middle;
+    }
+    .table-clean tr:hover td { background: #F9FBFC; }
+
+    /* Editorial Reader Layout */
+    .reader-grid {
+      display: grid;
+      grid-template-columns: 1fr 310px;
+      gap: 26px;
+      align-items: start;
+    }
+    .reader-sheet {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 44px 50px;
+      box-shadow: var(--shadow-card);
+    }
+    .reader-sheet h1 {
+      font-size: 2.1rem;
+      color: var(--main-navy);
+      margin-bottom: 24px;
+    }
+    .reader-sheet p {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.95;
+      color: #2D3E53;
+      margin-bottom: 22px;
+      text-indent: 1.5em;
+    }
+    .vocab-hl {
+      background: #E8F4F8;
+      color: #174E6F;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 1px dashed #285574;
+    }
+    .vocab-hl:hover { background: #CBE6F0; }
+
+    .vocab-panel {
+      position: sticky;
+      top: 24px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow-card);
+    }
+    .vocab-entry {
+      padding: 12px 0;
+      border-bottom: 1px solid #EEF3F7;
+    }
+    .vocab-entry:last-child { border-bottom: none; }
+    .vocab-entry .word {
+      font-weight: 700;
+      color: var(--main-navy);
+      font-size: 0.98rem;
+    }
+    .vocab-entry .trans {
+      color: #0369A1;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin: 2px 0;
+    }
+    .vocab-entry .desc {
+      font-size: 0.82rem;
+      color: var(--secondary-text);
+      line-height: 1.4;
+    }
+
+    /* Chapter Cards */
+    .chapter-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    .chapter-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.2s;
+    }
+    .chapter-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+    .chapter-card.locked {
+      background: #F9FBFC;
+      opacity: 0.8;
+      border-style: dashed;
+    }
+
+    /* Messaging Chat Box */
+    .chat-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      background: #FFFFFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      height: 580px;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+    .chat-inbox {
+      border-right: 1px solid var(--border-color);
+      overflow-y: auto;
+      background: #FAFBFD;
+    }
+    .conv-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid #EEF3F7;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .conv-item:hover, .conv-item.active { background: #EEF5F8; }
+    .conv-item .name { font-weight: 600; font-size: 0.88rem; color: var(--primary-text); }
+    .conv-item .preview {
+      font-size: 0.78rem;
+      color: var(--secondary-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+    .chat-pane {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .chat-messages {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      background: #FFFFFF;
+    }
+    .chat-bubble {
+      max-width: 70%;
+      padding: 10px 14px;
+      border-radius: 14px 14px 14px 2px;
+      background: var(--icon-bg);
+      color: var(--primary-text);
+      font-size: 0.88rem;
+      border: 1px solid var(--border-color);
+      align-self: flex-start;
+    }
+    .chat-bubble.mine {
+      align-self: flex-end;
+      background: var(--main-navy);
+      color: #FFFFFF;
+      border-color: var(--main-navy);
+      border-radius: 14px 14px 2px 14px;
+    }
+    .chat-bubble .meta {
+      font-size: 0.68rem;
+      opacity: 0.75;
+      margin-top: 4px;
+      text-align: right;
+    }
+
+    /* Modal System */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30, 48, 70, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      padding: 20px;
+      backdrop-filter: blur(3px);
+    }
+    .modal-window {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      width: 100%;
+      max-width: 580px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Auth Page */
+    .auth-backdrop {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, #263D55 0%, #1E3046 100%);
+      padding: 24px;
+    }
+    .auth-box {
+      width: 100%;
+      max-width: 440px;
+      background: #FFFFFF;
+      border-radius: var(--radius-xl);
+      padding: 38px 42px;
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.3);
+    }
+    .auth-box .logo-area { text-align: center; margin-bottom: 24px; }
+    .auth-box .symbol { font-size: 2.8rem; margin-bottom: 8px; }
+
+    /* Toast Notification */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--main-navy);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 100000;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+
+    @media (max-width: 860px) {
+      .platform-shell { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: relative; }
+      .main-viewport { padding: 20px 16px; }
+      .stats-triad { grid-template-columns: 1fr; }
+      .reader-grid { grid-template-columns: 1fr; }
+      .chat-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="app"></div>
+<div id="modal-space"></div>
+<div id="toast"></div>
+
+<script>
+// =========================================================================
+// 1. DATA REPOSITORY & 6 OFFICIAL STUDENT GROUPS (ТОПТОРУ)
+// =========================================================================
+
+const APP_NAME = "Тил Ачар";
+const APP_SUBTITLE = "Little Star — Kyrgyz Reading Academy";
+
+// 6 Official Groups (Топтору)
+const GROUPS_SEED = [
+  { id: 0, name: "1-топ", title: "Биринчи топ", desc: "3 окуучу — балдар", color: "#1E3046" },
+  { id: 1, name: "2-топ", title: "Экинчи топ", desc: "4 окуучу — 2 кыз, 2 бала", color: "#2563EB" },
+  { id: 2, name: "3-топ", title: "Үчүнчү топ", desc: "4 окуучу — 2 кыз, 2 бала", color: "#059669" },
+  { id: 3, name: "4-топ", title: "Төртүнчү топ", desc: "4 окуучу — 2 кыз, 2 бала", color: "#D97706" },
+  { id: 4, name: "5-топ", title: "Бешинчи топ", desc: "4 окуучу — 2 кыз, 2 бала", color: "#8B5CF6" },
+  { id: 5, name: "6-топ", title: "Алтынчы топ", desc: "4 окуучу — балдар", color: "#DC2626" }
+];
+
+// 23 Real Enrolled Students across the 6 Groups
+const STUDENTS_SEED = [
+  // Группа 1 (1-топ: 3 человека — только мальчики)
+  { u: 'alinur.s', n: 'Alinur Subanov', nick: 'Алинур', p: 'Alinur_72k', g: 0 },
+  { u: 'amir.zh', n: 'Amir Zhorobaev', nick: 'Амир', p: 'Amir_48z', g: 0 },
+  { u: 'matanov.u', n: 'Matanov Umar', nick: 'Умар М.', p: 'Umar_93m', g: 0 },
+
+  // Группа 2 (2-топ: 4 человека — 2 девочки, 2 мальчика)
+  { u: 'aelina.k', n: 'Aelina Kubanychbekova', nick: 'Аэлина', p: 'Aelina_61k', g: 1 },
+  { u: 'aibiike.k', n: 'Aibiike Kakharzhanova', nick: 'Айбийке', p: 'Aibiike_35k', g: 1 },
+  { u: 'amirbek.sh', n: 'Amirbek Shergaziev', nick: 'Амирбек', p: 'Amirbek_84s', g: 1 },
+  { u: 'ariet.a', n: 'Ariet Alisherov', nick: 'Ариет', p: 'Ariet_27a', g: 1 },
+
+  // Группа 3 (3-топ: 4 человека — 2 девочки, 2 мальчика)
+  { u: 'ailina.m', n: 'Ailina Mukambetova', nick: 'Айлина', p: 'Ailina_52m', g: 2 },
+  { u: 'aliia.k', n: 'Aliia Kudalberdieva', nick: 'Алия К.', p: 'Aliia_19k', g: 2 },
+  { u: 'chyngyz.k', n: 'Chyngyz Karypzhanov', nick: 'Чыңгыз', p: 'Chyngyz_43k', g: 2 },
+  { u: 'ilgiz.n', n: 'Ilgiz Nurbekov', nick: 'Илгиз', p: 'Ilgiz_76n', g: 2 },
+
+  // Группа 4 (4-топ: 4 человека — 2 девочки, 2 мальчика)
+  { u: 'amina.a', n: 'Amina Abdimalikova', nick: 'Амина', p: 'Amina_83a', g: 3 },
+  { u: 'gulalym.a', n: 'Gulalym Abdigaparova', nick: 'Гүлалым', p: 'Gulalym_29a', g: 3 },
+  { u: 'islam.zh', n: 'Islam Zhanybekov', nick: 'Ислам', p: 'Islam_64z', g: 3 },
+  { u: 'kubanych.a', n: 'Kubanychbek Abdymannapov', nick: 'Кубанычбек', p: 'Kuban_51a', g: 3 },
+
+  // Группа 5 (5-топ: 4 человека — 2 девочки, 2 мальчика)
+  { u: 'kamilla.e', n: 'Kamilla Alturgan Ernist', nick: 'Камилла', p: 'Kamilla_38e', g: 4 },
+  { u: 'aliia.b', n: 'Aliia Bolotbekova', nick: 'Алия Б.', p: 'Aliia_92b', g: 4 },
+  { u: 'nurgeldi.d', n: 'Nurgeldi Diuisheev', nick: 'Нургелди', p: 'Nurgeldi_47d', g: 4 },
+  { u: 'rinat.t', n: 'Rinat Tashtanbaev', nick: 'Ринат', p: 'Rinat_15t', g: 4 },
+
+  // Группа 6 (6-топ: 4 человека — только мальчики)
+  { u: 'saian.zh', n: 'Saian Zhakshylykov', nick: 'Саян', p: 'Saian_78z', g: 5 },
+  { u: 'ulanbatyr.m', n: 'Ulanbatyr Maratsabyrov', nick: 'Уланбатыр', p: 'Ulan_34m', g: 5 },
+  { u: 'umar.n', n: 'Umar Nasirdinbekov', nick: 'Умар Н.', p: 'Umar_69n', g: 5 },
+  { u: 'zalkar.sh', n: 'Zalkar Shaarbekov', nick: 'Залкар', p: 'Zalkar_82s', g: 5 }
+];
+
+// 8 Chapters of "Кичинекей ханзаада" (8-day marathon)
+function seed8Chapters() {
+  return [
+    {
+      num: 1, day: 1,
+      imgs: ["data:image/jpeg;base64,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W0jduDjmvWwNWT9xs4MRH7RdBpaYtPr1TlYUUUUCCiiimhhRRRTAKKKKACiiigAooooAKKKKACgUUCgBaKKKQgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigApKU0lABRRRTGFFFFABRRRSYHJeOtWm07SClqxE0x8sEdh3rhvD2nSvkhQd5y7H7xYnJ/rW546uiNfgticRlMgf7VS6GVtZi6jcNnH6V8/j6z59T1cPFRpcy3Nyw0mCzhLyEjjnNMn1fyMR2sW9R/ER0qG5u5Z1O9lWMc4FYOqeJdM0eAtLIC45Eank1wRqSk7UxKlKTvI1prma6OZHYL/cB4rOv9RsdNhMl1OiAds8/lXNx+J9Q8QZXTLCWHeMB2GAKLTwQ1xcGfWrozyZJKKc8/U0SjreqzeMUthx1rVdWbOmQeXalsCUjbke3vU7+Do9RdJr+7mkkHYnI+nNdDbWsVpCkEShYkACqBwAKvpEQu5htTGcmo9o27U9C3NIzbHR7PTYwIIVU45IUDNbFtZtOA8nyxr1JrPk1WwtpCJCJe2EPSs298STT7orc+VAB0JxkVdOnrzVNSXCrPZG9dX+nWBZlIeQDgAA1hXOo3+pD532xdlU44rnLrVra3fcZFLHv3rV8NS3muealvaycA7HdcI2Djr6V0qE5+7BFSpwoLmmammER3MVnCm93OWKj7v/ANavQrSEwQLGTnFZPh/RX0+JpLyO3N23G+IZ49M4Fb2K9TB4N0XzSPIr1ud6bAKWkApa9EwYUUUUCCiiimhhRRRTAKKKKACiiigAooooAKKKKACgUUCgBaKKKQgooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigANJSmkoAKKKKYwooooAKKKKAPOPiBo1zJfxanGjPEi7WCnp74rNtNasLeAM04bHy7V616HrV9DbWxjcBi/G0jqK89Tw7pv21rl49uWLGMDC8nNfOZhyKep6mEcnCzKeuaxqFxEtvpVpK/mgfOQBgEeufpWRpfgOa5nS91y5aU9RHuJI9smu186CBxHHhQBwF7Cq814nZ/wJrgVeUVywVjtjBvYvW8N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vgn/AAq6YnxwcGrOKMUcqAoMt15ioQCmeSPSn3SXKQH7HsMo6BzgGrmKMUcqA5+wutd87be28YQnqp6VfvJLwqfsyAY9eK0CtKBSsBmWBvpI8XQUe4PNXTb5H32B9jUoGOlOoApLp0YlEhZmIOcE1dIFFLQIbgDtS0UUxhQKKBQIWiiimAUUUUAFFFFABRRRQAUUUUAFFFFAAaSlooASilooASilooASilooAKSlooASjANLRQA3avpRtX0FOooAbtX0FG1fQU6ilZAM2L/dFGxfQU+ilyod2R+TH/cX8qY1rAwIMakHsRU9FHLHsF2ZUugadM2XsoGz6oKibwtorddPgz/uCtqip9lDsPnl3MP/AIRLQ/8AoHQf98CoZfB+lsP3VvHEc/eQYOPSuioqXQpvoNVJ9zlz4Ls+cTSj2zxUb+Cbcj5LmVTXWUVDwlJ9C1XqLqcW3gUH7t5Jn3aoX8BynpqDD8TXc0YqPqNDsP6zU7nAN4Auv4dS/MGoz4Av+2pJ+KmvQ8UmKX1Cj2H9Zqdzzk/D7Us/8hGL/vk0DwBqXe/iP4GvR8UYo+oUOw/rVTuedDwDff8APzCfzqaPwFdfx3cS/wC6DXf4oxQsBQ7CeJqdzndP8I2dntZ2MrjuRW8kSxqFXgDpipMUV0U6NOn8CsZSqSluxMUYpcUuK1IExRilooAQ0lOoxQA0UtLRQAlFLRQAlFLRQAlFLRQAlFLRQAlFLRQAlFLRQAlFLRQAlFLRSASilooASilooASgUtFMAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z","data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAC9AnkDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACjNFJQAtFNLADJ6Vz2veN9B8Ows97fRh1H+qU5c/hUSnGO40m9jo6K8gl+OVndy+Xo+mz3GBljKu3FRv8YNTCljo6oB3yaxeJgtzRUZs9iyKWvEV+NWqL9zQ1mUdX3EfoK0IPjrphi23FnMlwOCirkCmsRFg6M0evUV53a/F7QXn8q7c2/GQT0rptK8X6FrS5stRgkOcbd4DflVxrQZLpyXQ3c0UxZFboQafWpmLmikoFAxaKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoozR2oATNZms69p+g2T3eoXCQxL03Hkn0AqHxF4hsfDely3+oTBI0HA7sfQV4JINV+KOsNqeqStBosLfu4Rxx2rlxFdQW5pCDkaur/ABA8U+OLqa18LQPaacvDXDfLvH17VFYeBLCxiF5f3cmo35PzLNyFrbtLuzs7Madp8HlwRjC/571JG3mNtzXh1sZUk7R0R3RoqJXtrXTbZGItI4mbj5RjNVXtBI5EaAg9Aa1bqzKIpzuz0xVd7WQDaSU9xXN7RvVs2VolG4sIrNVM21Q3Zaauj6bL87QIM9yOtblpp0IjCySGU+rdqbNo6RtlZWAPQelHtrdQcjko/A+nknEn2iTOQDximX/gm8Km5tnFnFEOSjbSTXZQ6d5ZJEhzSXWmySgHz28sdVz1q1i5p7ktnF6Bqnijw+GuLHUpb1FPzRTHdu+lei+EfjJpWuXI0/U0/s++HZzhCfY1y0scqzExwhEHYCs7UNAsdbBWWBYpf+ekYwa9Cljmn7xjVoKSuj6FSVHAKspB7g0/NfNWjaj4x8GySNY3RutMR97W07ZZlwOAea9Q8K/F3QPEMqW07tYXe3lJxtUn0Br1qVeM9mccqbjuei0U1WDKCpyD0Ip1bXMwooooGFFFFMAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAWiiikIKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoNFFACVBdXEdtbvNKwWNASxPYVPXmnxm12XTPCD2tq+ZrtxGVHUL7f571jWqckdN2VFXZ4r4z8U6n4+8Y/ZbdpHs4pdsUK9Nuepr0iC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","data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAD6Ak8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACikyBTTLGOrr+dAD6KasiNnawOPSlBBoAWiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKazBFLMQAOpNADqRmVRliAB3NcVr3xAtbKRrTTU+13S/ewRsT6npXl+seMtQ1i9e186W9uGY4trMnYp9Cen60Aeyan400bTWaNrjzJh/BHz+tcrqHxQcAi0tBEP70zCuR0v4eeL9Xw87RaRA+DheZCPqK6my+Dnh22YTard3F3IP8AnvKAP5CgDl9S+JVzcbxLrMUI9IFyR+Vc5J4nikYs2sau2e6KQP5V6teR/DjwsuJreyRwMgIu8n8s1zc/xJtLmZofDvhX7RGpwJWjCqfwODQBzFj4vFo4eDXr9G9LhSR/Kuv034m6r8mDa36cfcba2Px71RfxRqM4K3ngu2eMjkLjJ/Wse6u/A+oTrHqmg3mgSLx50Q4z7YoA9V0/4kaRcukV2JLKZuMSjj86623uoLuISW8qSIehU5r58u9DkSITaBr1vrFqB/x7T8v/AEqjo/iv7Bftb2t3NpN8p5hn/wBWzentzQB9L0V5ro3xPELx23iC3MDHgXUfzRt75FehWl7bX0CzWs8c0bDIZGyKALFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUANd1jjZ2ICq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"],
+      title: "1-бөлүм: Учкучтун балалыгы жана сырдуу сүрөт",
+      desc: "Боа жыланы, пил жана чоңдордун түшүнбөстүгү",
+      text: [
+        `Алты жашымда тунгуюк токойлор тууралуу укмуштуу бир китептен сүрөт көрдүм. Анда пилди бүтүндөй жутуп жаткан боа жыланы тартылган экен. Мен көп ойлонуп, карындаш менен өзүмдүн эң биринчи сүрөтүмдү тарттым. Бул менин №1 сүрөтүм эле.`,
+        `Мен аны чоң кишилерге көрсөтүп: «Бул сүрөт силерди коркутуп жатабы?» — деп сурадым. Бирок чоңдор: «Эмнеге шляпадан коркушубуз керек?» деп таң калышты. Чындыгында ал шляпа эмес, пилди жутуп алган боа жыланы болчу.`,
+        `Чоң кишилер эч нерсени өз алдынча түшүнүшпөйт. Аларга дайыма баарын кайра-кайра түшүндүрүп берүү балдар үчүн өтө тажатма иш эле.`
+      ],
+      vocab: [
+        { word: "тунгуюк токой", ru: "дремучий лес", desc: "Адам баса алгыс, калың чытырман токой." },
+        { word: "боа жыланы", ru: "удав (змея боа)", desc: "Жемин чайнабай бүт жутуучу чоң жылан." },
+        { word: "жутуу", ru: "глотать, проглатывать", desc: "Тамакты чайнабай ичке өткөрүү." },
+        { word: "тажатма", ru: "утомительный, надоедливый", desc: "Адамды чарчаткан, кызыксыз иш." }
+      ],
+      questions: [
+        { id: "c1_q1", type: "mc", q: "Учкучтун №1 сүрөтүндө эмне тартылган эле?", opts: ["Кадимки шляпа", "Пилди жуткан боа жыланы", "Чөлдөгү козу", "Учак"], ans: 1, pts: 10 },
+        { id: "c1_q2", type: "tf", q: "Чоңдор сүрөттү көргөндө боа жыланын дароо таанышты.", opts: ["Туура", "Ката (Чоңдор аны шляпа деп ойлошту)"], ans: 1, pts: 10 },
+        { id: "c1_q3", type: "text", q: "Эмне үчүн чоңдорго баарын түшүндүрүү тажатма иш болгон? Өз оюңузду жазыңыз.", pts: 15 }
+      ]
+    },
+    {
+      num: 2, day: 2,
+      title: "2-бөлүм: Сахара чөлүндөгү сырдуу жолугушуу",
+      desc: "Учактын бузулушу жана козу тартуу өтүнүчү",
+      text: [
+        `Менин учагым бузулуп, Сахара чөлүнө аргасыз кондум. Менин бир гана жумага жете турган суусунум бар эле. Мен учактын кыймылдаткычын жалгыз оңдоого тийиш болчумун.`,
+        `Биринчи түнү кум үстүндө уктап калдым. Таң заарда назик бир үн: «Суранам, мага козу тартып берчи!» — деп ойготту. Мен ыргып турдум. Алдымда кичинекей, көздөрү жарык бала туруптур.`,
+        `Мен ага козу тартып бердим, бирок ал: «Бул оорукчан козу», «бул өтө карыган козу» деп жактырган жок. Акыры мен кутуча тартып: «Сенин козуң ушул кутучанын ичинде» дедим. Ханзаада кубанып кетти: «Дал ушундай козу керек эле!»`
+      ],
+      vocab: [
+        { word: "чөл", ru: "пустыня", desc: "Суусуз, кумдуу чоң аймак." },
+        { word: "суусун", ru: "питьё, напиток", desc: "Суусаганда ичүүчү суу же шире." },
+        { word: "козу", ru: "ягнёнок", desc: "Койдун кичинекей баласы." },
+        { word: "кутуча", ru: "коробочка", desc: "Буюм салуучу кичине куту." }
+      ],
+      questions: [
+        { id: "c2_q1", type: "mc", q: "Кичинекей ханзаада учкучтан эмне тартып берүүнү суранды?", opts: ["Учак", "Козу", "Роза гүлү", "Кудук"], ans: 1, pts: 10 },
+        { id: "c2_q2", type: "mc", q: "Ханзаадага акыры кайсы сүрөт жакты?", opts: ["Мүйүздүү кочкор", "Кутучанын сүрөтү", "Чоң ак кой", "Шляпа"], ans: 1, pts: 10 }
+      ]
+    },
+    {
+      num: 3, day: 3,
+      title: "3-бөлүм: B-612 кичинекей астероиди",
+      desc: "Ханзааданын планетасы жана түрк астроному",
+      text: [
+        `Ханзаада келген планета үй сыяктуу эле кичинекей болчу. Астрономдор аны B-612 астероиди деп аташкан. Бул планетаны 1909-жылы түрк астроному ачкан эле.`,
+        `Бирок түрк астроному улуттук кийимчен чыкканда, анын сөзүнө эч ким ишенген эмес. Кийин ал европалык заманбап костюм кийип чыкканда гана чоңдор ага кол чаап ишенишкен.`,
+        `Чоң кишилер цифраларды жакшы көрүшөт. Аларга жаңы дос жөнүндө айтсаң: «Анын үнү кандай, эмнени жакшы көрөт?» деп сурашпайт. «Ал канча жашта, канча акча табат?» деп гана сурашат.`
+      ],
+      vocab: [
+        { word: "астероид", ru: "астероид", desc: "Асмандагы кичинекей планета." },
+        { word: "цифра", ru: "цифра, число", desc: "Сандардын белгиси." },
+        { word: "ишенүү", ru: "верить, доверять", desc: "Бирөөнүн сөзүн чындык деп билүү." }
+      ],
+      questions: [
+        { id: "c3_q1", type: "mc", q: "Чоңдор эмне үчүн түрк астрономуна кийин гана ишеништи?", opts: ["Анткени ал кийимин өзгөрткөн", "Анткени телескобу жакшы эле", "Анткени ал китеп жазган", "Ал акча берген"], ans: 0, pts: 10 }
+      ]
+    },
+    {
+      num: 4, day: 4,
+      title: "4-бөлүм: Баобаб коркунучу жана тазалоо эрежеси",
+      desc: "Жаман адаттарды эрте тазалоо эрежеси",
+      text: [
+        `Ханзааданын планетасында жакшы өсүмдүктөр менен бирге коркунучтуу баобаб уруктары бар эле. Баобаб — бул өтө зор дарак. Эгер баобабдын көчөтүн убагында жулуп салбасаң, ал бүтүндөй планетаны тамырлары менен тешип, жарып салат.`,
+        `Ошондуктан ханзаада мындай алтын эрежени карманчу: «Эртең менен бети-колду жуугандан кийин, дароо планетаңды кылдаттык менен тазалоо керек. Жакшынакай розанын көчөттөрүнөн баобабдарды айырмалап, жулуп туруу зарыл».`
+      ],
+      vocab: [
+        { word: "баобаб", ru: "баобаб", desc: "Планетаны жарып жиберүүчү өтө чоң дарак." },
+        { word: "көчөт", ru: "росток, саженец", desc: "Өсүп келе жаткан жаш өсүмдүк." },
+        { word: "алтын эреже", ru: "золотое правило", desc: "Эң маанилүү жана бекем тартип." }
+      ],
+      questions: [
+        { id: "c4_q1", type: "mc", q: "Эгер баобабды убагында тазалабаса эмне болот?", opts: ["Гүлдөр жакшы өсөт", "Планетаны жарып салат", "Эч нерсе болбойт", "Суу түгөнөт"], ans: 1, pts: 10 }
+      ]
+    },
+    {
+      num: 5, day: 5,
+      title: "5-бөлүм: Күн батышы жана кырк төрт жолку сагыныч",
+      desc: "Жан дүйнө тынчтыгы жана күндүн батышы",
+      text: [
+        `— Мен күн батканын көргөндү аябай жакшы көрөм. Жүрү, күн батканын көрөлү! — деди ханзаада учкучка. Бирок Жерде күндүн батышын күтүү керек экенин билгенде ал жылмайды.`,
+        `Анын кичинекей астероидинде отургучту бир аз жылдырып коюп эле, күн батканын каалаганча көрүүгө мүмкүн эле. «Бир жолу мен күн батканын кырк төрт жолу көрдүм... Адам аябай кайгырганда күн батканын караганды жакшы көрөт...» — деди ал.`
+      ],
+      vocab: [
+        { word: "күн батышы", ru: "закат солнца", desc: "Күндүн горизонтко батып бара жаткан учуру." },
+        { word: "кайгыруу", ru: "печалиться, грустить", desc: "Жүрөктүн капа болушу." }
+      ],
+      questions: [
+        { id: "c5_q1", type: "mc", q: "Ханзаада бир күндө күн батканын канча жолу көргөн?", opts: ["1 жолу", "10 жолу", "44 жолу", "100 жолу"], ans: 2, pts: 10 }
+      ]
+    },
+    {
+      num: 6, day: 6,
+      title: "6-бөлүм: Назик, эрке Роза гүлү жана тикенеги",
+      desc: "Сүйүү, камкордук жана түшүнбөстүк",
+      text: [
+        `Ханзааданын планетасында башкача бир сонун гүл өсүп чыккан. Ал өтө сулуу, бирок өтө сыймыктанган жана эрке эле. Ал өзүнүн төрт тикенегин көрсөтүп: «Жолборстордон коркпойм, бирок шамалдан корком. Мени айнек калпак менен жаап койчу!» — деп талап кылчу.`,
+        `Ханзаада гүлүн жакшы көрсө да, анын каприздерин түшүнө албай, сапарга аттанып кетти. «Мен аны сөздөрүнөн эмес, жасаган ишинен жана жытынан баалашым керек болчу» — деп кийин өкүндү ханзаада.`
+      ],
+      vocab: [
+        { word: "назик", ru: "нежный, хрупкий", desc: "Аяр мамилени талап кылган аруу." },
+        { word: "тикенек", ru: "шип, колючка", desc: "Гүлдүн коргонуучу учтуу бөлүгү." }
+      ],
+      questions: [
+        { id: "c6_q1", type: "mc", q: "Роза гүлү эмнеден коркот эле?", opts: ["Жолборстон", "Шамалдан", "Караңгыдан", "Козудан"], ans: 1, pts: 10 }
+      ]
+    },
+    {
+      num: 7, day: 7,
+      title: "7-бөлүм: Акылман Түлкү менен жолугушуу",
+      desc: "«Жүрөк гана көргүч, эң негизги нерсе көзгө көрүнбөйт»",
+      text: [
+        `Жерде Кичинекей ханзаада Түлкүгө жолукту. Түлкү ага «колго үйрөтүү» сырын ачып берди. «Колго үйрөтүү — бул байланыш түзүү, дос болуу дегендик. Азыр сен мен үчүн жүз миңдеген башка балдардын бирисиң. Бирок сен мени колго үйрөтсөң, биз бири-бирибизге дүйнөдөгү эң керектүү дос болобуз».`,
+        `Коштошоордо Түлкү улуу сырды айтты: «Менин сырым өтө жөнөкөй: Адам жүрөгү менен гана жакшы көрө алат. Эң негизги нерсе көзгө көрүнбөйт. Сен өзүң колго үйрөткөн нерсең үчүн түбөлүк жооптуусуң!»`
+      ],
+      vocab: [
+        { word: "колго үйрөтүү", ru: "приручать, сближаться", desc: "Бири-бирине көнүп, дос болуу." },
+        { word: "жоопкерчилик", ru: "ответственность", desc: "Өз милдетин так сезүү." },
+        { word: "жүрөк", ru: "сердце", desc: "Чыныгы сезимдердин борбору." }
+      ],
+      questions: [
+        { id: "c7_q1", type: "mc", q: "Түлкүнүн айтымында, эң негизги сыр эмнеде?", opts: ["Эң негизги нерсе көзгө көрүнбөйт, жүрөк гана көрө алат", "Байлык баарын чечет", "Көп саякаттоо керек", "Күчтүү адам жеңет"], ans: 0, pts: 15 }
+      ]
+    },
+    {
+      num: 8, day: 8,
+      title: "8-бөлүм: Чөлдөгү кудук жана жылдыздардын күлкүсү",
+      desc: "Өмүр суусу жана марафондун жыйынтыгы",
+      text: [
+        `Ханзаада менен учкуч чөлдөн катылган кудукту табышты. Ал суу кадимки суу эмес эле, ал узак жолдун, күжүрмөн эмгектин жана жүрөктүн белеги болчу.`,
+        `Ханзаада өз планетасына, сүйүктүү Розасына кайтты. Учкучка ал мындай деди: «Сен түнкүсүн жылдыздарды караганда, менин күлкүмдү угасың. Анткени мен ошол жылдыздардын биринде жашайм...» Асмандагы бардык жылдыздар күлүп турган коңгуроодой шыңгырап калды.`
+      ],
+      vocab: [
+        { word: "кудук", ru: "колодец", desc: "Жерден суу алуучу терең чуңкур." },
+        { word: "коңгуроо", ru: "колодельчик", desc: "Шыңгыраган үн чыгаруучу буюм." }
+      ],
+      questions: [
+        { id: "c8_q1", type: "mc", q: "Ханзаада учкучка эстеликке эмне калтырды?", opts: ["Күлүп турган жылдыздарды", "Учакты", "Сүрөттөрүн", "Алтынды"], ans: 0, pts: 20 }
+      ]
+    }
+  ];
+}
+
+// 4 Initial Grammar Topics
+function seed4GrammarTopics() {
+  return [
+    {
+      id: "g1", topic: "Зат атоочтун көптүк сан мүчөлөрү (-лар, -лер, -дор, -дөр...)",
+      desc: "Кыргыз тилинде көптүк сан мүчөсү үндөштүк мыйзамына жараша өзгөрөт.",
+      dayUnlockedAfterChapter: 1,
+      examples: ["китеп + тер = китептер", "адам + дар = адамдар", "жылдыз + дар = жылдыздар"],
+      exercises: [
+        { q: "«Бала» сөзүнө кайсы көптүк сан мүчөсү уланат?", opts: ["-лар (балдар)", "-тер", "-дор"], ans: 0, pts: 10 }
+      ]
+    },
+    {
+      id: "g2", topic: "Сураныч ыңгай мүчөсү (-чы, -чи, -чу, -чү)",
+      desc: "Сылык өтүнүчтү же суранычты билдирүү үчүн жалганат (пожалуйста).",
+      dayUnlockedAfterChapter: 3,
+      examples: ["Тартып бер + чи = Тартып берчи", "Айт + чы = Айтчы"],
+      exercises: [
+        { q: "«Оку» сөзүнө сылык өтүнүч мүчөсүн улаңыз:", opts: ["Окучу", "Окуду", "Окуган"], ans: 0, pts: 10 }
+      ]
+    },
+    {
+      id: "g3", topic: "Сын атоочтун күчөтмө даражалары (Өтө, аябай, эң)",
+      desc: "Сапатты күчөтүп көрсөтүү үчүн колдонулат.",
+      dayUnlockedAfterChapter: 5,
+      examples: ["Өтө сулуу", "Аябай назик", "Эң сонун"],
+      exercises: [
+        { q: "«Өтө сулуу» деген сөз айкашы эмнени билдирет?", opts: ["Очень красивая", "Некрасивая", "Обычная"], ans: 0, pts: 10 }
+      ]
+    },
+    {
+      id: "g4", topic: "Өткөн чак атоочтуктары (-ган, -ген, -гон, -гөн)",
+      desc: "Кыймыл-аракеттин мурда болгонун жана сапатка айланганын билдирет.",
+      dayUnlockedAfterChapter: 7,
+      examples: ["Үйрөткөн нерсең", "Көргөн күнүм"],
+      exercises: [
+        { q: "«Сен үйрөткөн нерсең үчүн жооптуусуң» сүйлөмүндөгү этиш кайсы чакта?", opts: ["Өткөн чак атоочтугу", "Келер чак", "Учур чак"], ans: 0, pts: 10 }
+      ]
+    }
+  ];
+}
+
+// =========================================================================
+// 2. DATABASE SYSTEM & CALENDAR UNLOCK ENGINE
+// =========================================================================
+
+let DB = null;
+let ME = sessionStorage.getItem('til_achar_user') || null;
+let PAGE = 'home';
+let ARG = null;
+let CHAT_WITH = null;
+
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const esc = s => String(s ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const today = () => new Date().toISOString().slice(0, 10);
+const addDays = (d, n) => {
+  const dt = new Date(d);
+  dt.setDate(dt.getDate() + n);
+  return dt.toISOString().slice(0, 10);
+};
+
+async function H(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+const U = (u = ME) => DB?.users?.[u];
+const P = (u = ME) => {
+  if (!DB.progress[u]) {
+    DB.progress[u] = {
+      completedChapters: [],
+      testScores: {},
+      grammarScores: {},
+      activeDays: [] // ONLY populated when a chapter test is actually completed! NOT on login.
+    };
+  }
+  return DB.progress[u];
+};
+
+const saveDB = () => {
+  localStorage.setItem('til_achar_db_v3', JSON.stringify(DB));
+};
+
+function toast(msg) {
+  const el = $('#toast');
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+// True Duolingo-style streak calculation:
+// ONLY awards a streak if consecutive days have completed chapter tests!
+function getStudentStreak(login) {
+  const p = DB.progress[login];
+  if (!p || !p.activeDays || p.activeDays.length === 0) return 0;
+
+  const sorted = [...new Set(p.activeDays)].sort().reverse();
+  const cur = today();
+  const yesterday = addDays(cur, -1);
+
+  // In Duolingo: streak is alive if you completed today OR yesterday
+  if (sorted[0] !== cur && sorted[0] !== yesterday) {
+    return 0; // Streak broken if missed yesterday and haven't done today
+  }
+
+  let streak = 1;
+  let checkDate = sorted[0];
+  for (let i = 1; i < sorted.length; i++) {
+    const expectedPrev = addDays(checkDate, -1);
+    if (sorted[i] === expectedPrev) {
+      streak++;
+      checkDate = expectedPrev;
+    } else {
+      break;
+    }
+  }
+  return streak;
+}
+
+// Real-time score calculation based strictly on saved completed activities
+function getStudentStats(login) {
+  const p = DB.progress[login] || { completedChapters: [], testScores: {}, grammarScores: {}, activeDays: [] };
+  let testPts = 0;
+  for (const tid in (p.testScores || {})) {
+    testPts += (+p.testScores[tid].score || 0);
+  }
+  let grammarPts = 0;
+  for (const gid in (p.grammarScores || {})) {
+    grammarPts += (+p.grammarScores[gid].score || 0);
+  }
+  const readPts = (p.completedChapters || []).length * 15;
+  const streakCount = getStudentStreak(login);
+  const streakPts = streakCount * 10;
+  const manualPts = (DB.manualPoints[login] || []).reduce((a, b) => a + (+b.pts || 0), 0);
+
+  const total = testPts + grammarPts + readPts + streakPts + manualPts;
+  return {
+    total,
+    testPts,
+    grammarPts,
+    readPts,
+    streakPts,
+    manualPts,
+    completedChaptersCount: (p.completedChapters || []).length,
+    streakCount
+  };
+}
+
+function getGroupStats(groupId) {
+  const grp = DB.groups[groupId] || { name: 'Топ' };
+  const grpStudents = Object.keys(DB.users).filter(l => DB.users[l].r === 's' && DB.users[l].g === groupId);
+  let totalScore = 0;
+  let totalChapters = 0;
+  grpStudents.forEach(l => {
+    const st = getStudentStats(l);
+    totalScore += st.total;
+    totalChapters += st.completedChaptersCount;
+  });
+  const avgScore = grpStudents.length ? Math.round(totalScore / grpStudents.length) : 0;
+  return {
+    ...grp,
+    studentCount: grpStudents.length,
+    totalScore,
+    avgScore,
+    totalChapters
+  };
+}
+
+// Robust calendar-based chapter unlocking check
+function isChapterUnlocked(chIdx) {
+  // Staff always has full preview access
+  if (U() && U().r !== 's') return true;
+  if (DB.unlockedAll) return true;
+
+  // Calendar comparison: strictly unlocks when today() >= scheduled date
+  const targetDate = DB.chapterDates?.[chIdx] || addDays(DB.startDate || today(), chIdx);
+  return today() >= targetDate;
+}
+
+// Current marathon day determination
+function getCurrentMarathonDay() {
+  if (DB.unlockedAll) return 8;
+  const cur = today();
+  let day = 0;
+  for (let i = 0; i < (DB.chapterDates || []).length; i++) {
+    if (cur >= DB.chapterDates[i]) {
+      day = i + 1;
+    }
+  }
+  return Math.min(8, Math.max(1, day));
+}
+
+// =========================================================================
+// 3. UI VIEWS & CONTROLLERS
+// =========================================================================
+
+const VIEWS = {
+  // Student Dashboard ("Менин окуум")
+  student_home() {
+    const u = U();
+    const p = P();
+    const stats = getStudentStats(ME);
+    const grp = DB.groups[u.g] || { name: 'Топ' };
+    const curChapterIndex = p.completedChapters.length < 8 ? p.completedChapters.length : 7;
+    const curChapter = DB.chapters[curChapterIndex];
+    const mDay = getCurrentMarathonDay();
+
+    const allStudentsInGroup = Object.keys(DB.users)
+      .filter(l => DB.users[l].r === 's' && DB.users[l].g === u.g)
+      .map(l => ({ login: l, name: DB.users[l].n, nick: DB.users[l].nick, score: getStudentStats(l).total }))
+      .sort((a, b) => b.score - a.score);
+    const rankInGroup = allStudentsInGroup.findIndex(s => s.login === ME) + 1;
+
+    return `
+      <!-- Welcome Section -->
+      <div style="margin-bottom:22px">
+        <h1 style="margin-bottom:4px">Сени жаңы ачылыштар күтүп турат.</h1>
+        <p class="text-secondary" style="font-size:1.02rem">
+          Кош келдиң, <b>${esc(u.n)}</b>! Бүгүн марафондун <b>${mDay}-күнү</b>. Тобуңуз: <b>${esc(grp.name)}</b>.
+        </p>
+      </div>
+
+      <!-- Featured Reading Banner -->
+      <div class="featured-banner">
+        <h2>Жаңы дүйнө ачууга даярсыңбы?</h2>
+        <p>Кичинекей ханзааданын дүйнөсүнө саякатыңды улант. Ар бир бөлүм сени жаңы кыргызча сөздөр жана терең маанилер менен тааныштырат.</p>
+        <button class="btn btn-pale" onclick="go('student_reading', ${curChapterIndex})">
+          📖 Китепти окууну улантуу (${curChapter.num}-бөлүм) ➔
+        </button>
+      </div>
+
+      <!-- 3 Main Stat Cards (With real Duolingo flame behavior) -->
+      <div class="stats-triad">
+        <div class="stat-card-clean">
+          <div class="label">Окулган бөлүмдөр</div>
+          <div class="value">${stats.completedChaptersCount} <span style="font-size:1.1rem;color:var(--secondary-text);font-weight:600">/ 8</span></div>
+        </div>
+        <div class="stat-card-clean">
+          <div class="label">Топтогу ордуң</div>
+          <div class="value">#${rankInGroup || 1} <span style="font-size:0.95rem;color:var(--accent-gold);font-weight:600">(${esc(grp.name)})</span></div>
+        </div>
+        <div class="stat-card-clean">
+          <div class="label">Жалпы упайың</div>
+          <div class="value">${stats.total} <span style="font-size:0.95rem;color:#059669;font-weight:600">балл</span></div>
+        </div>
+      </div>
+
+      <!-- Reading Progress Bar -->
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+          <h3>Менин окуу жолум</h3>
+          <span style="font-weight:700;color:var(--main-navy)">${Math.round((stats.completedChaptersCount / 8) * 100)}% аткарылды</span>
+        </div>
+        <div style="width:100%;height:10px;background:#E2EAF1;border-radius:6px;overflow:hidden">
+          <div style="width:${(stats.completedChaptersCount / 8) * 100}%;height:100%;background:linear-gradient(90deg, #285574, #059669);border-radius:6px"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:0.84rem;color:var(--secondary-text)">
+          <span>Окулган: ${stats.completedChaptersCount} бөлүм</span>
+          <span>Калган: ${8 - stats.completedChaptersCount} бөлүм</span>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <!-- Upcoming Tasks -->
+        <div class="card">
+          <h3>Кезектеги тапшырмалар</h3>
+          <div style="margin-top:14px;display:flex;flex-direction:column;gap:12px">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#F8FAFD;border-radius:var(--radius-sm);border:1px solid var(--border-color)">
+              <div>
+                <b style="font-size:0.88rem">${curChapter.num}-бөлүмдү окуу</b>
+                <div class="text-sm text-secondary">${esc(curChapter.title)}</div>
+              </div>
+              <button class="btn btn-sm btn-outline" onclick="go('student_reading', ${curChapterIndex})">Ачуу</button>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#F8FAFD;border-radius:var(--radius-sm);border:1px solid var(--border-color)">
+              <div>
+                <b style="font-size:0.88rem">Грамматикалык машыгуу</b>
+                <div class="text-sm text-secondary">Көптүк сан жана мүчөлөр</div>
+              </div>
+              <button class="btn btn-sm btn-outline" onclick="go('student_grammar')">Өтүү</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Group Leaderboard -->
+        <div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <h3>Биздин жылдыздар (${esc(grp.name)})</h3>
+            <button class="btn btn-sm btn-outline" onclick="go('student_group')">Толук топ ➔</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            ${allStudentsInGroup.map((st, idx) => `
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:6px;${st.login === ME ? 'background:#EEF5F8;font-weight:700' : 'background:#FFFFFF'}">
+                <span><b>${idx + 1}.</b> ${esc(st.name)} ${st.login === ME ? '<span class="badge badge-pale">Сиз</span>' : ''}</span>
+                <b style="color:var(--main-navy)">${st.score} б.</b>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // Chapter Selection ("Китеп")
+  student_book() {
+    const p = P();
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+        <div>
+          <h1>Китеп: Кичинекей ханзаада</h1>
+          <p class="text-secondary">Автору: Антуан де Сент-Экзюпери • Календардык график боюнча ачылуучу 8 бөлүм</p>
+        </div>
+      </div>
+
+      <div class="chapter-cards-grid">
+        ${DB.chapters.map((ch, idx) => {
+          const isUnlocked = isChapterUnlocked(idx);
+          const isDone = (p.completedChapters || []).includes(idx);
+          const unlockDate = DB.chapterDates?.[idx] || addDays(DB.startDate, idx);
+          return `
+            <div class="chapter-card ${!isUnlocked ? 'locked' : ''}">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <span class="badge badge-pale">Күн ${ch.day} • ${unlockDate}</span>
+                ${isDone ? '<span class="badge badge-green">✔ Окулду</span>' : (isUnlocked ? '<span class="badge badge-amber">Ачык</span>' : `<span class="badge badge-gray">🔒 ${unlockDate} күнү ачылат</span>`)}
+              </div>
+              <h3 style="margin-top:6px">${ch.num}-бөлүм</h3>
+              <p class="text-sm text-secondary" style="line-height:1.4">${esc(ch.title)}</p>
+              
+              <div style="margin-top:auto;padding-top:12px;border-top:1px solid #EEF3F7;display:flex;justify-content:space-between;align-items:center">
+                <span class="text-sm text-secondary">${(ch.vocab || []).length} сөз • Тест</span>
+                ${isUnlocked 
+                  ? `<button class="btn btn-sm btn-pale" onclick="go('student_reading', ${idx})">Окуу ➔</button>`
+                  : `<span class="text-sm text-secondary">${unlockDate}</span>`
+                }
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  },
+
+  // Reader Experience
+  student_reading() {
+    const chIdx = ARG !== null && ARG !== undefined ? +ARG : 0;
+    const ch = DB.chapters[chIdx];
+    if (!ch) return `<p>Бөлүм табылган жок</p>`;
+    const isUnlocked = isChapterUnlocked(chIdx);
+    const p = P();
+    const isDone = (p.completedChapters || []).includes(chIdx);
+    const unlockDate = DB.chapterDates?.[chIdx] || addDays(DB.startDate, chIdx);
+
+    if (!isUnlocked) {
+      return `
+        <button class="btn btn-sm btn-outline" onclick="go('student_book')">← Китепке кайтуу</button>
+        <div class="card" style="text-align:center;padding:50px;margin-top:20px">
+          <div style="font-size:3rem">🔒</div>
+          <h2>Бул бөлүм ${unlockDate} күнү ачылат</h2>
+          <p class="text-secondary">Календардык график боюнча ар бир бөлүм өз күнүндө автоматтык түрдө ачылат.</p>
+        </div>
+      `;
+    }
+
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <button class="btn btn-sm btn-outline" onclick="go('student_book')">← Китепке кайтуу</button>
+        <span class="badge badge-pale">Марафон: ${ch.day}-күн</span>
+      </div>
+
+      <div class="reader-grid">
+        <div class="reader-sheet">
+          <div style="border-bottom:1px solid #EEF3F7;padding-bottom:14px;margin-bottom:24px">
+            <span style="font-size:0.8rem;font-weight:700;color:#285574;text-transform:uppercase;letter-spacing:0.06em">Кичинекей ханзаада • ${ch.num}-бөлүм</span>
+            <h1>${esc(ch.title)}</h1>
+          </div>
+
+          <div>
+            ${ch.text.map((pText, pIdx) => {
+              let html = esc(pText);
+              (ch.vocab || []).forEach(v => {
+                const reg = new RegExp(`(${v.word})`, 'gi');
+                html = html.replace(reg, `<span class="vocab-hl" onclick="showWordDef('${v.word}','${esc(v.ru)}','${esc(v.desc)}')">${'$1'}</span>`);
+              });
+              const imgBlock = (pIdx === 0 && ch.imgs && ch.imgs.length)
+                ? `<div style="display:flex;flex-wrap:wrap;gap:12px;margin:16px 0 8px 0">${ch.imgs.map(src => `<img src="${src}" alt="" style="max-width:100%;height:auto;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.12)">`).join('')}</div>`
+                : '';
+              return `<p>${html}</p>${imgBlock}`;
+            }).join('')}
+          </div>
+
+          <div style="margin-top:40px;padding-top:22px;border-top:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center">
+            <div>
+              ${isDone 
+                ? '<span class="badge badge-green">✔ Бул бөлүм окулган</span>'
+                : '<span class="text-sm text-secondary">Бөлүмдү окуп бүткөн соң тестти тапшырып, упай жана огонёк 🔥 алыңыз:</span>'
+              }
+            </div>
+            <button class="btn btn-pale" onclick="go('student_test', ${chIdx})">
+              📝 Тестке өтүү ➔
+            </button>
+          </div>
+        </div>
+
+        <div class="vocab-panel">
+          <h3 style="margin-bottom:14px;display:flex;align-items:center;gap:6px">
+            <span>📖</span> Жаңы сөздөр (${(ch.vocab || []).length})
+          </h3>
+          <p class="text-sm text-secondary" style="margin-bottom:12px">Тексттеги белгиленген сөздөрдү басып, орусча маанисин көрүңүз.</p>
+          <div>
+            ${(ch.vocab || []).map(v => `
+              <div class="vocab-entry">
+                <div class="word">${esc(v.word)}</div>
+                <div class="trans">${esc(v.ru)}</div>
+                <div class="desc">${esc(v.desc)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // Chapter Test
+  student_test() {
+    const chIdx = ARG !== null && ARG !== undefined ? +ARG : 0;
+    const ch = DB.chapters[chIdx];
+    return `
+      <div style="max-width:760px;margin:0 auto">
+        <button class="btn btn-sm btn-outline" style="margin-bottom:16px" onclick="go('student_reading', ${chIdx})">← Окуу бөлмөсүнө кайтуу</button>
+
+        <div class="card">
+          <h2>${ch.num}-бөлүм боюнча кыскача тест</h2>
+          <p class="text-secondary" style="margin-bottom:20px">Тестти тапшыргандан кийин гана күн активдүү деп эсептелип, огонёк 🔥 жана упайлар берилет.</p>
+
+          ${(ch.questions || []).map((q, idx) => `
+            <div style="margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid #EEF3F7">
+              <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+                <b>${idx + 1}. ${esc(q.q)}</b>
+                <span class="badge badge-pale">+${q.pts} балл</span>
+              </div>
+              ${q.type === 'mc' || q.type === 'tf' ? `
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  ${q.opts.map((opt, oIdx) => `
+                    <label style="display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border-color);border-radius:var(--radius-sm);cursor:pointer">
+                      <input type="radio" name="${q.id}" value="${oIdx}">
+                      <span>${esc(opt)}</span>
+                    </label>
+                  `).join('')}
+                </div>
+              ` : `
+                <textarea id="${q.id}" rows="3" placeholder="Жообуңузду бул жерге жазыңыз..."></textarea>
+              `}
+            </div>
+          `).join('')}
+
+          <div style="display:flex;justify-content:flex-end">
+            <button class="btn btn-pale" onclick="submitChapterTest(${chIdx})">
+              Тапшыруу жана огонёкту 🔥 күйгүзүү ✔
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // Grammar Page
+  student_grammar() {
+    const p = P();
+    return `
+      <h1>🧩 Грамматикалык машыгуулар</h1>
+      <p class="text-secondary" style="margin-bottom:24px">Орус тилдүү окуучулар үчүн кыргыз тилинин негизги эрежелери.</p>
+
+      <div style="display:flex;flex-direction:column;gap:20px">
+        ${DB.grammarTopics.map((g, idx) => {
+          const isUnlocked = p.completedChapters.length >= g.dayUnlockedAfterChapter || U().r !== 's';
+          const isDone = !!p.grammarScores[g.id];
+          return `
+            <div class="card" style="border-left:5px solid ${isDone ? 'var(--accent-green)' : 'var(--featured-banner)'}">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <h3>${idx + 1}-тема: ${esc(g.topic)}</h3>
+                ${isDone ? '<span class="badge badge-green">✔ Тапшырылды</span>' : (isUnlocked ? '<span class="badge badge-amber">Ачык</span>' : '<span class="badge badge-gray">🔒 Кийинки бөлүмдөрдөн кийин ачылат</span>')}
+              </div>
+              <p class="text-secondary" style="margin:8px 0">${esc(g.desc)}</p>
+              
+              <div style="background:#F8FAFD;padding:12px 16px;border-radius:var(--radius-sm);margin:12px 0">
+                <b>Мисалдар:</b>
+                <ul style="margin:6px 0 0 20px;color:var(--primary-text);font-size:0.9rem">
+                  ${g.examples.map(ex => `<li>${esc(ex)}</li>`).join('')}
+                </ul>
+              </div>
+
+              ${isUnlocked ? `
+                <div style="margin-top:14px">
+                  <b>Көнүгүүлөр:</b>
+                  ${g.exercises.map((ex, eIdx) => `
+                    <div style="margin-top:10px;padding:10px;background:#FFFFFF;border:1px solid var(--border-color);border-radius:6px">
+                      <p style="font-weight:600;font-size:0.88rem">${eIdx + 1}. ${esc(ex.q)}</p>
+                      <div style="display:flex;gap:12px;margin-top:6px">
+                        ${ex.opts.map((opt, oIdx) => `
+                          <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem">
+                            <input type="radio" name="${g.id}_${eIdx}" value="${oIdx}">
+                            <span>${esc(opt)}</span>
+                          </label>
+                        `).join('')}
+                      </div>
+                    </div>
+                  `).join('')}
+                  <button class="btn btn-sm btn-pale" style="margin-top:12px" onclick="submitGrammar('${g.id}')">
+                    Грамматиканы текшерүү
+                  </button>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  },
+
+  // Student Results ("Менин жыйынтыктарым")
+  student_myresults() {
+    const stats = getStudentStats(ME);
+    return `
+      <h1>📊 Менин жыйынтыктарым жана аналитика</h1>
+      <p class="text-secondary" style="margin-bottom:24px">Сиздин марафондогу көрсөткүчтөрүңүз.</p>
+
+      <div class="stats-triad">
+        <div class="stat-card-clean"><div class="label">Окуу прогресси</div><div class="value">${stats.completedChaptersCount}/8</div></div>
+        <div class="stat-card-clean"><div class="label">Тесттерден упай</div><div class="value">${stats.testPts}</div></div>
+        <div class="stat-card-clean">
+          <div class="label">Огонёк (Duolingo Streak)</div>
+          <div class="value">
+            ${stats.streakCount > 0 
+              ? `<span style="color:#D97706">🔥 ${stats.streakCount} күн</span>`
+              : `<span style="opacity:0.4;filter:grayscale(1)">🔥 0 күн</span>`
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-left:5px solid #D97706">
+        <h3 style="color:#B45309">💡 Огонёк 🔥 системасы тууралуу:</h3>
+        <p class="text-secondary" style="margin-top:6px;line-height:1.6">
+          Огонёк жөн гана сайтка киргенде пайда болбойт! Ал сиз күнүмдүк бөлүмдү окуп, тестти ийгиликтүү тапшырганда гана күйөт. Эгер күн сайын калтырбай окуп турсаңыз, огонёктун күндөрү 1, 2, 3... болуп көбөйө берет. Эгер бир күн калтырып койсоңуз, огонёк өчүп калат.
+        </p>
+      </div>
+    `;
+  },
+
+  // Groups Page ("Топтору")
+  student_group() {
+    const u = U();
+    const grp = DB.groups[u.g];
+    const grpStats = getGroupStats(u.g);
+
+    const allGroups = DB.groups.map((g, idx) => getGroupStats(idx)).sort((a, b) => b.totalScore - a.totalScore);
+    const members = Object.keys(DB.users)
+      .filter(l => DB.users[l].r === 's' && DB.users[l].g === u.g)
+      .map(l => ({ login: l, name: DB.users[l].n, nick: DB.users[l].nick, ...getStudentStats(l) }))
+      .sort((a, b) => b.total - a.total);
+
+    return `
+      <h1>👥 Топтору — ${esc(grp.name)} (${esc(grp.title)})</h1>
+      <p class="text-secondary" style="margin-bottom:24px">${esc(grp.desc)} • 6 топтун ортосундагы мелдеши.</p>
+
+      <div class="stats-triad">
+        <div class="stat-card-clean"><div class="label">Топтун жалпы упайы</div><div class="value">${grpStats.totalScore}</div></div>
+        <div class="stat-card-clean"><div class="label">Орточо балл (1 окуучуга)</div><div class="value">${grpStats.avgScore}</div></div>
+        <div class="stat-card-clean"><div class="label">Окулган бөлүмдөр</div><div class="value">${grpStats.totalChapters}</div></div>
+      </div>
+
+      <h2>Сиздин топтун мүчөлөрү (${members.length} окуучу)</h2>
+      <div class="table-responsive" style="margin-bottom:28px">
+        <table class="table-clean">
+          <thead>
+            <tr>
+              <th>Орун</th>
+              <th>Окуучу</th>
+              <th>Окулган бөлүмдөр</th>
+              <th>Streak</th>
+              <th>Жалпы упай</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${members.map((m, idx) => `
+              <tr style="${m.login === ME ? 'background:#EEF5F8;' : ''}">
+                <td><b>${idx + 1}</b></td>
+                <td>
+                  <b>${esc(m.name)}</b> <span class="text-sm text-secondary">(${esc(m.nick)})</span>
+                  ${m.login === ME ? '<span class="badge badge-pale" style="margin-left:6px">Сиз</span>' : ''}
+                </td>
+                <td>${m.completedChaptersCount} / 8</td>
+                <td>${m.streakCount > 0 ? `<b style="color:#D97706">🔥 ${m.streakCount}</b>` : `<span style="opacity:0.4">🔥 0</span>`}</td>
+                <td><b style="color:var(--main-navy);font-size:1.05rem">${m.total}</b></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Бардык 6 топтун рейтинги (Топтору)</h2>
+      <div class="table-responsive">
+        <table class="table-clean">
+          <thead>
+            <tr>
+              <th>Орун</th>
+              <th>Топ</th>
+              <th>Курамы</th>
+              <th>Окуучулардын саны</th>
+              <th>Орточо балл</th>
+              <th>Жалпы упай</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${allGroups.map((g, idx) => `
+              <tr style="${g.id === u.g ? 'background:#FAF4EC;font-weight:700' : ''}">
+                <td><b>${idx === 0 ? '🥇 1' : idx === 1 ? '🥈 2' : idx === 2 ? '🥉 3' : (idx + 1)}</b></td>
+                <td><b>${esc(g.name)}</b> (${esc(g.title)}) ${g.id === u.g ? '<span class="badge badge-amber">Сиздин топ</span>' : ''}</td>
+                <td><span class="text-sm text-secondary">${esc(g.desc)}</span></td>
+                <td>${g.studentCount} окуучу</td>
+                <td>${g.avgScore} б.</td>
+                <td><b style="color:var(--main-navy);font-size:1.1rem">${g.totalScore}</b></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  },
+
+  // Student Profile
+  student_prof() {
+    const u = U();
+    const stats = getStudentStats(ME);
+    return `
+      <h1>👤 Жеке баракчам</h1>
+      <div class="card" style="max-width:640px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:20px">
+          <div class="user-avatar-mini" style="width:58px;height:58px;font-size:1.4rem">${u.n.charAt(0)}</div>
+          <div>
+            <h2 style="margin:0">${esc(u.n)}</h2>
+            <p class="text-secondary">Логин: <b>@${esc(ME)}</b> | Никнейм: <b>${esc(u.nick)}</b></p>
+            <span class="badge badge-pale">${{ s: 'Окуучу', teacher: 'Мугалим', admin: 'Администратор' }[u.r]}</span>
+            <span class="badge badge-amber">${esc(DB.groups[u.g]?.name || 'Топ')}</span>
+          </div>
+        </div>
+
+        <hr style="border:0;border-top:1px solid #EEF3F7;margin:16px 0">
+
+        <h3>Менин көрсөткүчтөрүм</h3>
+        <div class="stats-triad" style="margin-top:14px">
+          <div class="stat-card-clean"><div class="label">Упай</div><div class="value">${stats.total}</div></div>
+          <div class="stat-card-clean"><div class="label">Бөлүмдөр</div><div class="value">${stats.completedChaptersCount}/8</div></div>
+          <div class="stat-card-clean">
+            <div class="label">Огонёк</div>
+            <div class="value">${stats.streakCount > 0 ? `🔥 ${stats.streakCount}` : `<span style="opacity:0.4">🔥 0</span>`}</div>
+          </div>
+        </div>
+
+        <button class="btn btn-outline" style="margin-top:20px" onclick="logout()">
+          ⎋ Платформадан чыгуу (Logout)
+        </button>
+      </div>
+    `;
+  },
+
+  // Two-way Chat
+  chat() {
+    const isStaff = U().r !== 's';
+    const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+
+    const threads = isStaff
+      ? [
+          { id: 'all', title: '🌍 Жалпы жарыялар жана чат' },
+          ...DB.groups.map((g, idx) => ({ id: 'group_' + idx, title: '👥 ' + g.name + ' (' + g.title + ')' })),
+          ...students.map(l => ({ id: 'dm_' + l, title: '💬 ' + DB.users[l].n + ' (@' + l + ')' }))
+        ]
+      : [
+          { id: 'all', title: '🌍 Жалпы жарыялар жана чат' },
+          { id: 'group_' + U().g, title: '👥 ' + DB.groups[U().g].name + ' тобу' },
+          { id: 'dm_' + ME, title: '💬 Мугалим жана Админ менен жеке чат' }
+        ];
+
+    if (!CHAT_WITH || !threads.some(t => t.id === CHAT_WITH)) {
+      CHAT_WITH = threads[0].id;
+    }
+
+    const msgs = (DB.messages || []).filter(m => m.thread === CHAT_WITH);
+
+    return `
+      <h1>💬 Байланыш жана Чат</h1>
+      <div class="chat-layout">
+        <div class="chat-inbox">
+          <div style="padding:14px 16px;border-bottom:1px solid var(--border-color);font-weight:700;font-size:0.82rem;color:var(--secondary-text)">
+            КАНАЛДАР ЖАНА БААРЛАШУУЛАР
+          </div>
+          ${threads.map(t => `
+            <div class="conv-item ${t.id === CHAT_WITH ? 'active' : ''}" onclick="selectChat('${t.id}')">
+              <div class="name">${esc(t.title)}</div>
+              <div class="preview">Билдирүүнү көрүү үчүн басыңыз</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="chat-pane">
+          <div style="padding:14px 20px;border-bottom:1px solid var(--border-color);background:#FAFBFD;font-weight:700">
+            ${esc(threads.find(t => t.id === CHAT_WITH)?.title || 'Чат')}
+          </div>
+
+          <div class="chat-messages" id="chatBox">
+            ${msgs.map(m => `
+              <div class="chat-bubble ${m.sender === ME ? 'mine' : ''}">
+                <div style="font-weight:700;font-size:0.75rem;margin-bottom:2px;opacity:0.85">
+                  ${esc(DB.users[m.sender]?.n || m.sender)}
+                </div>
+                <div>${esc(m.text)}</div>
+                <div class="meta">${new Date(m.ts).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+              </div>
+            `).join('') || '<p class="text-sm text-secondary" style="text-align:center;padding:30px">Бул каналда билдирүү жок. Биринчи болуп жазыңыз!</p>'}
+          </div>
+
+          <div style="padding:14px;border-top:1px solid var(--border-color);display:flex;gap:10px;background:#FAFBFD">
+            <input id="chatInput" placeholder="Билдирүү жазыңыз..." onkeydown="if(event.key==='Enter')sendChatMessage()">
+            <button class="btn btn-pale" onclick="sendChatMessage()">Жөнөтүү</button>
+          </div>
+        </div>
+      </div>
+    `;
+  },
+
+  // -------------------------------------------------------------
+  // TEACHER & ADMINISTRATION VIEWS
+  // -------------------------------------------------------------
+  staff_home() {
+    const isTeacher = U().r === 'teacher';
+    const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+    let totalScore = 0;
+    students.forEach(l => totalScore += getStudentStats(l).total);
+    const avgScore = students.length ? Math.round(totalScore / students.length) : 0;
+    const mDay = getCurrentMarathonDay();
+
+    return `
+      <h1>${isTeacher ? '👨‍🏫 Мугалимдин башкаруу панели' : '⚙️ Администрациянын башкаруу панели'}</h1>
+      <p class="text-secondary" style="margin-bottom:22px">
+        «Кичинекей ханзаада» 8 күндүк окуу марафону (23 окуучу, 6 топ) • Учурдагы күн: <b>${mDay}-күн</b> • Башталышы: <b>${DB.startDate}</b>.
+      </p>
+
+      <div class="stats-triad">
+        <div class="stat-card-clean"><div class="label">Жалпы окуучулар</div><div class="value">23 <span style="font-size:0.95rem;color:var(--secondary-text)">окуучу</span></div></div>
+        <div class="stat-card-clean"><div class="label">Топтордун саны</div><div class="value">6 <span style="font-size:0.95rem;color:var(--secondary-text)">топ</span></div></div>
+        <div class="stat-card-clean"><div class="label">Орточо упай</div><div class="value">${avgScore} <span style="font-size:0.95rem;color:#059669">балл</span></div></div>
+      </div>
+
+      <div style="display:flex;gap:12px;margin-bottom:26px">
+        <button class="btn btn-pale" onclick="go(U().r === 'teacher' ? 'teacher_students' : 'admin_manage_students')">
+          👥 Бардык 23 окуучунун тизмеси
+        </button>
+        <button class="btn btn-outline" onclick="go('staff_groups')">
+          📊 6 топту салыштыруу (Топтору)
+        </button>
+        <button class="btn btn-outline" onclick="openCredentialsSheetModal()">
+          🔑 Логиндер баракчасы
+        </button>
+        ${!isTeacher ? `<button class="btn btn-outline" style="color:var(--accent-red)" onclick="resetAllStudentScores()">⚠️ Бардык упайларды нөлдөө (Обнулить)</button>` : ''}
+      </div>
+
+      <h2>Окуучулардын активдүүлүгү боюнча сереп (Бардык баллдар таза)</h2>
+      <div class="table-responsive">
+        <table class="table-clean">
+          <thead>
+            <tr>
+              <th>Окуучу</th>
+              <th>Логин</th>
+              <th>Топ</th>
+              <th>Окулган бөлүм</th>
+              <th>Тест балл</th>
+              <th>Streak</th>
+              <th>Жалпы упай</th>
+              <th>Аракет</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${students.slice(0, 10).map(l => {
+              const u = DB.users[l];
+              const st = getStudentStats(l);
+              return `
+                <tr>
+                  <td><b>${esc(u.n)}</b></td>
+                  <td><code>${esc(l)}</code></td>
+                  <td><span class="badge badge-amber">${esc(DB.groups[u.g]?.name || 'Топ')}</span></td>
+                  <td>${st.completedChaptersCount} / 8</td>
+                  <td>${st.testPts}</td>
+                  <td>${st.streakCount > 0 ? `<b style="color:#D97706">🔥 ${st.streakCount}</b>` : `<span style="opacity:0.4">🔥 0</span>`}</td>
+                  <td><b style="color:var(--main-navy);font-size:1.02rem">${st.total}</b></td>
+                  <td><button class="btn btn-sm btn-outline" onclick="go('staff_student_detail', '${l}')">Көрүү ➔</button></td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  },
+
+  // Student Monitoring List
+  staff_students() {
+    const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div>
+          <h1>👥 Бардык 23 окуучунун тизмеси жана көрсөткүчтөрү</h1>
+          <p class="text-secondary">6 топ боюнча бөлүштүрүлгөн окуучулар.</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-sm btn-outline" onclick="openCredentialsSheetModal()">🔑 Логиндер баракчасы</button>
+          <button class="btn btn-sm btn-outline" onclick="exportDataCSV()">📥 Экспорт CSV</button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table-clean">
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Окуучу</th>
+              <th>Логин</th>
+              <th>Топ</th>
+              <th>Бөлүмдөр</th>
+              <th>Тест балл</th>
+              <th>Streak</th>
+              <th>Жалпы упай</th>
+              <th>Толук сереп</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${students.map((l, idx) => {
+              const u = DB.users[l];
+              const st = getStudentStats(l);
+              return `
+                <tr>
+                  <td>${idx + 1}</td>
+                  <td><b>${esc(u.n)}</b></td>
+                  <td><code>${esc(l)}</code></td>
+                  <td><span class="badge badge-amber">${esc(DB.groups[u.g]?.name || 'Топ')}</span></td>
+                  <td>${st.completedChaptersCount}/8</td>
+                  <td>${st.testPts}</td>
+                  <td>${st.streakCount > 0 ? `<b style="color:#D97706">🔥 ${st.streakCount}</b>` : `<span style="opacity:0.4">🔥 0</span>`}</td>
+                  <td><b style="color:var(--main-navy);font-size:1.05rem">${st.total}</b></td>
+                  <td><button class="btn btn-sm btn-pale" onclick="go('staff_student_detail', '${l}')">Ачуу</button></td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  },
+
+  // Groups Comparison
+  staff_groups() {
+    const allGroups = DB.groups.map((g, idx) => getGroupStats(idx)).sort((a, b) => b.totalScore - a.totalScore);
+    return `
+      <h1>👥 Топтору — 6 топтун көрсөткүчтөрү жана салыштыруу</h1>
+      <p class="text-secondary" style="margin-bottom:22px">Топтордун упайлары жана орточо көрсөткүчтөрү.</p>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));gap:16px">
+        ${allGroups.map((g, idx) => `
+          <div class="stat-card-clean" style="border-top:4px solid ${g.color}">
+            <div style="display:flex;justify-content:space-between">
+              <b>${['🥇 1-орун', '🥈 2-орун', '🥉 3-орун', '4-орун', '5-орун', '6-орун'][idx] || ''}</b>
+              <span class="badge badge-amber">${g.studentCount} окуучу</span>
+            </div>
+            <h3 style="margin:6px 0 2px">${esc(g.name)} (${esc(g.title)})</h3>
+            <p class="text-sm text-secondary">${esc(g.desc)}</p>
+            <div class="value" style="font-size:1.6rem;margin-top:8px">${g.totalScore} <span style="font-size:0.9rem;color:var(--secondary-text)">упай</span></div>
+            <div class="text-sm text-secondary">Орточо: ${g.avgScore} б. / окуучуга</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  },
+
+  // Student Detail Dossier
+  staff_student_detail() {
+    const l = ARG;
+    const u = DB.users[l];
+    if (!u) return `<p>Окуучу табылган жок</p>`;
+    const st = getStudentStats(l);
+    const p = P(l);
+
+    return `
+      <button class="btn btn-sm btn-outline" style="margin-bottom:16px" onclick="go(U().r === 'teacher' ? 'teacher_students' : 'admin_manage_students')">
+        ← Тизмеге кайтуу
+      </button>
+
+      <div class="card" style="border-left:5px solid var(--featured-banner)">
+        <h2>${esc(u.n)} (@${esc(l)})</h2>
+        <p class="text-secondary">Тобу: <b>${esc(DB.groups[u.g]?.name)} (${esc(DB.groups[u.g]?.title)})</b></p>
+        
+        <div class="stats-triad" style="margin-top:16px">
+          <div class="stat-card-clean"><div class="label">Жалпы упай</div><div class="value">${st.total}</div></div>
+          <div class="stat-card-clean"><div class="label">Окулган бөлүмдөр</div><div class="value">${st.completedChaptersCount}/8</div></div>
+          <div class="stat-card-clean"><div class="label">Тест баллдары</div><div class="value">${st.testPts}</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Окуучуга кошумча балл кошуу</h3>
+        <div style="display:flex;gap:12px;margin-top:10px">
+          <input id="bonusName" placeholder="Себеби (мис: Чоң эссе, активдүүлүк)">
+          <input id="bonusPts" placeholder="Балл (мис: 15)" style="max-width:140px">
+          <button class="btn btn-pale" onclick="awardBonus('${l}')">Кошуу</button>
+        </div>
+      </div>
+    `;
+  },
+
+  // Admin: Manage Students
+  admin_manage_students() {
+    const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+    return `
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+        <div>
+          <h1>⚙️ Окуучуларды башкаруу (23 окуучу, 6 топ)</h1>
+          <p class="text-secondary">Аккаунттар, сырсөздөр жана топторду бөлүштүрүү.</p>
+        </div>
+        <div style="display:flex;gap:10px">
+          <button class="btn btn-pale btn-sm" onclick="openCredentialsSheetModal()">🔑 Логиндер баракчасы</button>
+          <button class="btn btn-outline btn-sm" onclick="exportLoginSheet()">📄 Экспорт баракча</button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table-clean">
+          <thead>
+            <tr>
+              <th>№</th>
+              <th>Окуучунун аты</th>
+              <th>Логин</th>
+              <th>Тобу</th>
+              <th>Упай</th>
+              <th>Аракеттер</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${students.map((l, idx) => {
+              const u = DB.users[l];
+              const st = getStudentStats(l);
+              return `
+                <tr>
+                  <td>${idx + 1}</td>
+                  <td><b>${esc(u.n)}</b></td>
+                  <td><code>${esc(l)}</code></td>
+                  <td>
+                    <select style="max-width:160px;padding:4px 8px;font-size:0.85rem" onchange="changeStudentGroup('${l}', this.value)">
+                      ${DB.groups.map((g, gIdx) => `<option value="${gIdx}" ${u.g === gIdx ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}
+                    </select>
+                  </td>
+                  <td><b>${st.total}</b></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline" onclick="resetStudentPassword('${l}')">Сырсөздү жаңылоо</button>
+                  </td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      </div>
+    `;
+  },
+
+  // Marathon Schedule Management (Calendar based!)
+  admin_marathon_cal() {
+    return `
+      <h1>📅 Марафондун календары жана автоматтык ачылуу графиги</h1>
+      <p class="text-secondary" style="margin-bottom:20px">
+        Марафондун башталуу датасы: <b>${DB.startDate}</b> • Учурда автоматтык аныкталган күн: <b>${getCurrentMarathonDay()}-күн</b>.
+      </p>
+
+      <div class="card" style="max-width:620px">
+        <h3>Марафондун башталуу күнүн жөндөө:</h3>
+        <p class="text-sm text-secondary" style="margin:4px 0 12px">Башталуу датасын өзгөртсөңүз, бардык 8 бөлүмдүн ачылуу даталары автоматтык түрдө алдыга жылдырылат.</p>
+        <div style="display:flex;align-items:center;gap:14px">
+          <input type="date" id="mStartDateInput" value="${DB.startDate}" style="max-width:200px">
+          <button class="btn btn-pale" onclick="updateMarathonStartDate()">Датаны сактоо</button>
+          <button class="btn btn-outline" onclick="unlockAllMarathon()">Баарын ачуу (Unlock All)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Бөлүмдөрдүн календардык ачылуу графиги</h3>
+        <p class="text-sm text-secondary" style="margin-bottom:12px">Ар бир күн келгенде (бүгүнкү дата графикке жеткенде) тиешелүү бөлүм автоматтык түрдө ачылат.</p>
+        ${DB.chapters.map((ch, idx) => {
+          const uDate = DB.chapterDates?.[idx] || addDays(DB.startDate, idx);
+          const isUnlocked = isChapterUnlocked(idx);
+          return `
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #EEF3F7">
+              <div>
+                <b>${ch.day}-күн:</b> ${ch.num}-бөлүм — ${esc(ch.title)}
+                <div class="text-sm text-secondary">Ачылуу күнү: <b>${uDate}</b></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px">
+                <input type="date" value="${uDate}" style="max-width:160px;padding:4px 8px;font-size:0.85rem" onchange="updateSingleChapterDate(${idx}, this.value)">
+                ${isUnlocked ? '<span class="badge badge-green">Ачык</span>' : '<span class="badge badge-gray">🔒 Жабык</span>'}
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    `;
+  },
+
+  // Chapters CMS
+  admin_chapters() {
+    return `
+      <h1>📚 Китеп жана бөлүмдөрдүн мазмуну (CMS)</h1>
+      <div class="card">
+        <h3>Бөлүмдөрдүн мазмунун толук түзөтүү (JSON форматында)</h3>
+        <textarea id="chaptersJson" style="min-height:360px;font-family:'JetBrains Mono',monospace;font-size:0.85rem">${esc(JSON.stringify(DB.chapters, null, 2))}</textarea>
+        <div style="margin-top:14px;display:flex;gap:12px">
+          <button class="btn btn-pale" onclick="saveChaptersCMS()">Өзгөртүүлөрдү сактоо</button>
+          <button class="btn btn-outline" onclick="restoreDefaultCurriculum()">Баштапкы абалга кайтаруу</button>
+        </div>
+      </div>
+    `;
+  }
+};
+
+// =========================================================================
+// 4. ACTION HANDLERS
+// =========================================================================
+
+const go = (page, arg = null) => {
+  PAGE = page;
+  ARG = arg;
+  renderApp();
+  window.scrollTo(0, 0);
+};
+
+function selectChat(threadId) {
+  CHAT_WITH = threadId;
+  renderApp();
+}
+
+function showWordDef(word, ru, desc) {
+  const m = $('#modal-space');
+  m.innerHTML = `
+    <div class="modal-overlay" onclick="closeModal(event)">
+      <div class="modal-window" onclick="event.stopPropagation()">
+        <span class="badge badge-pale">Сөздүк маалымдамасы</span>
+        <h2 style="font-family:'Playfair Display',serif;color:var(--main-navy);margin:10px 0 4px">${esc(word)}</h2>
+        <p style="font-size:1.1rem;color:#0369A1;margin-bottom:8px"><b>Орусча котормосу:</b> ${esc(ru)}</p>
+        <p class="text-sm text-secondary" style="line-height:1.5">${esc(desc)}</p>
+        <div style="margin-top:20px;display:flex;justify-content:flex-end">
+          <button class="btn btn-sm btn-pale" onclick="closeModal()">Түшүндүм</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function closeModal() {
+  $('#modal-space').innerHTML = '';
+}
+
+function openCredentialsSheetModal() {
+  const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+  const m = $('#modal-space');
+  m.innerHTML = `
+    <div class="modal-overlay" onclick="closeModal(event)">
+      <div class="modal-window" style="max-width:680px" onclick="event.stopPropagation()">
+        <h3>🔑 Окуучулардын логин жана сырсөздөр баракчасы (23 окуучу)</h3>
+        <p class="text-sm text-secondary" style="margin-bottom:14px">Ар бир окуучу үчүн жеке логин жана коопсуз сырсөз түзүлгөн.</p>
+
+        <div style="max-height:380px;overflow-y:auto;border:1px solid var(--border-color);border-radius:var(--radius-sm)">
+          <table class="table-clean" style="font-size:0.84rem">
+            <thead>
+              <tr>
+                <th>Окуучу</th>
+                <th>Тобу</th>
+                <th>Логин</th>
+                <th>Сырсөз</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${students.map(l => {
+                const u = DB.users[l];
+                return `
+                  <tr>
+                    <td><b>${esc(u.n)}</b></td>
+                    <td><span class="badge badge-amber">${esc(DB.groups[u.g]?.name)}</span></td>
+                    <td><code>${esc(l)}</code></td>
+                    <td><code style="color:var(--accent-green);font-weight:700">${esc(u.plainPass || '******')}</code></td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;margin-top:16px">
+          <button class="btn btn-sm btn-outline" onclick="exportLoginSheet()">📄 Баракчаны жүктөп алуу (.txt)</button>
+          <button class="btn btn-sm btn-pale" onclick="closeModal()">Жабуу</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Submitting chapter test: THIS is where Duolingo streak & active days are earned!
+function submitChapterTest(chIdx) {
+  const ch = DB.chapters[chIdx];
+  const p = P();
+  let score = 0;
+
+  for (const q of (ch.questions || [])) {
+    if (q.type === 'mc' || q.type === 'tf') {
+      const selected = document.querySelector(`input[name="${q.id}"]:checked`);
+      if (selected && +selected.value === q.ans) score += q.pts;
+    } else {
+      const val = $(`#${q.id}`)?.value.trim();
+      if (val && val.length > 5) score += q.pts;
+    }
+  }
+
+  p.testScores[chIdx] = { score, date: today() };
+  if (!p.completedChapters.includes(chIdx)) p.completedChapters.push(chIdx);
+  
+  // Duolingo streak rule: active day ONLY added when chapter test is successfully completed!
+  if (!p.activeDays.includes(today())) {
+    p.activeDays.push(today());
+  }
+
+  saveDB();
+  const streakNow = getStudentStreak(ME);
+  toast(`Тест тапшырылды! +${score} балл. Огонёк: 🔥 ${streakNow} күн! ✔`);
+  go('student_home');
+}
+
+function submitGrammar(topicId) {
+  const g = DB.grammarTopics.find(t => t.id === topicId);
+  const p = P();
+  let score = 0;
+
+  (g.exercises || []).forEach((ex, idx) => {
+    const sel = document.querySelector(`input[name="${g.id}_${idx}"]:checked`);
+    if (sel && +sel.value === ex.ans) score += ex.pts;
+  });
+
+  p.grammarScores[topicId] = { score, date: today() };
+  saveDB();
+  toast(`Грамматика сакталды! +${score} балл кошулду ✔`);
+  go('student_home');
+}
+
+function awardBonus(login) {
+  const n = $('#bonusName').value.trim();
+  const s = $('#bonusPts').value.trim();
+  if (!n || !s) return toast('Талааларды толтуруңуз');
+  (DB.manualPoints[login] ??= []).push({ name: n, pts: +s || 0 });
+  saveDB();
+  renderApp();
+  toast('Бонус балл кошулду ✔');
+}
+
+function sendChatMessage() {
+  const inp = $('#chatInput');
+  const txt = inp?.value.trim();
+  if (!txt) return;
+  DB.messages.push({
+    thread: CHAT_WITH,
+    sender: ME,
+    text: txt,
+    ts: Date.now()
+  });
+  saveDB();
+  inp.value = '';
+  renderApp();
+  const box = $('#chatBox');
+  if (box) box.scrollTop = box.scrollHeight;
+}
+
+// Updating calendar start date
+function updateMarathonStartDate() {
+  const newDate = $('#mStartDateInput').value;
+  if (!newDate) return;
+  DB.startDate = newDate;
+  DB.chapterDates = Array.from({ length: 8 }, (_, i) => addDays(newDate, i));
+  DB.unlockedAll = false;
+  saveDB();
+  toast(`Марафондун башталышы ${newDate} деп коюлду. График жаңырды ✔`);
+  renderApp();
+}
+
+function updateSingleChapterDate(chIdx, newDate) {
+  if (!newDate) return;
+  DB.chapterDates[chIdx] = newDate;
+  saveDB();
+  toast(`${chIdx + 1}-бөлүмдүн күнү ${newDate} деп коюлду ✔`);
+  renderApp();
+}
+
+function unlockAllMarathon() {
+  DB.unlockedAll = true;
+  saveDB();
+  toast('Бардык бөлүмдөр ачылды (Unlock All) ✔');
+  renderApp();
+}
+
+// Reset all student scores cleanly to zero
+function resetAllStudentScores() {
+  if (confirm('Чын эле бардык 23 окуучунун упайларын жана жыйынтыктарын толугу менен нөлдөөнү (обнулить) каалайсызбы?')) {
+    DB.progress = {};
+    DB.manualPoints = {};
+    saveDB();
+    toast('Бардык окуучулардын упайлары нөлдөндү! (0 балл) ✔');
+    renderApp();
+  }
+}
+
+function changeStudentGroup(login, groupId) {
+  if (DB.users[login]) {
+    DB.users[login].g = +groupId;
+    saveDB();
+    toast('Окуучунун тобу өзгөртүлдү ✔');
+    renderApp();
+  }
+}
+
+function resetStudentPassword(login) {
+  const newPass = prompt(`@${login} үчүн жаңы сырсөздү жазыңыз:`, 'Pass_2026!');
+  if (newPass) {
+    H(newPass).then(h => {
+      DB.users[login].h = h;
+      DB.users[login].plainPass = newPass;
+      saveDB();
+      toast('Сырсөз ийгиликтүү алмаштырылды ✔');
+    });
+  }
+}
+
+function exportLoginSheet() {
+  const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+  let text = 'ТИЛ АЧАР — ОКУУЧУЛАРДЫН КИРҮҮ БАРАКЧАСЫ (23 ОКУУЧУ, 6 ТОП)\n';
+  text += '==========================================================\n\n';
+  students.forEach((l, idx) => {
+    const u = DB.users[l];
+    text += `${idx + 1}. ${u.n}\n   Тобу: ${DB.groups[u.g]?.name} (${DB.groups[u.g]?.title})\n   Логин: ${l}\n   Сырсөз: ${u.plainPass}\n   Дарек: http://localhost:3000\n\n`;
+  });
+  const blob = new Blob([text], { type: 'text/plain;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `til_achar_students_logins_${today()}.txt`;
+  a.click();
+  toast('Баракча жүктөлдү ✔');
+}
+
+function exportDataCSV() {
+  const students = Object.keys(DB.users).filter(l => DB.users[l].r === 's');
+  let csv = 'Логин,Аты-жөнү,Тобу,ОкулганБөлүм,ТестБалл,StreakКүн,ЖалпыУпай\n';
+  students.forEach(l => {
+    const u = DB.users[l];
+    const st = getStudentStats(l);
+    csv += `"${l}","${u.n}","${DB.groups[u.g]?.name}",${st.completedChaptersCount},${st.testPts},${st.streakCount},${st.total}\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `til_achar_students_report_${today()}.csv`;
+  a.click();
+  toast('CSV отчет жүктөлдү ✔');
+}
+
+function saveChaptersCMS() {
+  try {
+    const parsed = JSON.parse($('#chaptersJson').value);
+    if (!Array.isArray(parsed)) throw 0;
+    DB.chapters = parsed;
+    saveDB();
+    toast('Бөлүмдөр сакталды ✔');
+  } catch (e) {
+    toast('JSON форматында ката бар!');
+  }
+}
+
+function restoreDefaultCurriculum() {
+  if (confirm('Баштапкы мазмунга кайтарууну каалайсызбы?')) {
+    DB.chapters = seed8Chapters();
+    saveDB();
+    renderApp();
+    toast('Баштапкы мазмун кайтарылды ✔');
+  }
+}
+
+// Pure Authentication: NO auto-streak awarded on login!
+async function login(customU, customP) {
+  const u = (customU || $('#loginUser').value).trim().toLowerCase();
+  const p = customP || $('#loginPass').value;
+  const user = DB.users[u];
+  if (user && user.h === await H(p)) {
+    ME = u;
+    sessionStorage.setItem('til_achar_user', u);
+    // Student simply views dashboard. Streak is ONLY earned after completing a chapter!
+    PAGE = user.r === 's' ? 'student_home' : 'staff_home';
+    renderApp();
+  } else {
+    $('#loginErr').textContent = 'Логин же сырсөз туура эмес. Кайра текшериңиз.';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('til_achar_user');
+  ME = null;
+  renderApp();
+}
+
+// =========================================================================
+// 5. MAIN RENDERER (CLEAN LOGIN PAGE WITHOUT EXPOSED DEMO BUTTONS)
+// =========================================================================
+
+function renderApp() {
+  const app = $('#app');
+  if (!ME || !U()) {
+    app.innerHTML = `
+      <div class="auth-backdrop">
+        <div class="auth-box">
+          <div class="logo-area">
+            <div class="symbol">🪐 ⭐ 🦊</div>
+            <h1 style="font-size:1.8rem;margin-bottom:4px;color:var(--main-navy)">${APP_NAME}</h1>
+            <p class="text-secondary" style="font-size:0.88rem">${APP_SUBTITLE}</p>
+          </div>
+
+          <div class="form-group">
+            <label>Логин:</label>
+            <input id="loginUser" placeholder="Логин" autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label>Сырсөз:</label>
+            <input id="loginPass" type="password" placeholder="Сырсөз" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()">
+          </div>
+          <p id="loginErr" style="color:var(--accent-red);font-size:0.85rem;min-height:22px"></p>
+
+          <button class="btn btn-pale" style="width:100%;padding:12px;font-size:0.95rem" onclick="login()">
+            Кирүү ➔
+          </button>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const u = U();
+  const isStudent = u.r === 's';
+  const isTeacher = u.r === 'teacher';
+
+  let navItems = [];
+  if (isStudent) {
+    navItems = [
+      { id: 'student_home', label: 'Менин окуум', icon: '🏠' },
+      { id: 'student_book', label: 'Китеп', icon: '📖' },
+      { id: 'student_grammar', label: 'Грамматика', icon: '🧩' },
+      { id: 'student_myresults', label: 'Менин жыйынтыктарым', icon: '📊' },
+      { id: 'student_group', label: 'Топтору', icon: '👥' },
+      { id: 'chat', label: 'Чат', icon: '💬' },
+      { id: 'student_prof', label: 'Жеке баракчам', icon: '👤' }
+    ];
+  } else if (isTeacher) {
+    navItems = [
+      { id: 'staff_home', label: 'Башкы бет', icon: '🏠' },
+      { id: 'staff_students', label: 'Окуучулар (23)', icon: '👥' },
+      { id: 'staff_groups', label: 'Топтору (6)', icon: '📊' },
+      { id: 'chat', label: 'Чат жана байланыш', icon: '💬' },
+      { id: 'student_prof', label: 'Профиль', icon: '👤' }
+    ];
+  } else {
+    navItems = [
+      { id: 'staff_home', label: 'Башкы бет', icon: '🏠' },
+      { id: 'admin_manage_students', label: 'Окуучуларды башкаруу', icon: '⚙️' },
+      { id: 'staff_groups', label: 'Топтору (6 топ)', icon: '👥' },
+      { id: 'admin_marathon_cal', label: 'Марафондун календары', icon: '📅' },
+      { id: 'admin_chapters', label: 'Китеп жана бөлүмдөр (CMS)', icon: '📚' },
+      { id: 'chat', label: 'Чат жана жарыялар', icon: '💬' },
+      { id: 'student_prof', label: 'Профиль', icon: '👤' }
+    ];
+  }
+
+  app.innerHTML = `
+    <div class="platform-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="brand-symbol">🪐</div>
+          <div>
+            <div class="brand-title">${APP_NAME}</div>
+            <div class="brand-subtitle">Reading Academy</div>
+          </div>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="nav-section-title">Негизги меню</div>
+          ${navItems.map(item => `
+            <button class="nav-item ${PAGE === item.id ? 'active' : ''}" onclick="go('${item.id}')">
+              <span class="icon">${item.icon}</span>
+              <span>${esc(item.label)}</span>
+            </button>
+          `).join('')}
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user-badge-mini">
+            <div class="user-avatar-mini">${u.n.charAt(0)}</div>
+            <div class="user-info-mini">
+              <div class="name">${esc(u.n)}</div>
+              <div class="sub">${{ s: 'Окуучу', teacher: 'Мугалим', admin: 'Администратор' }[u.r]}</div>
+            </div>
+          </div>
+          <button class="nav-item" style="color:#F87171;padding:6px 8px" onclick="logout()">
+            <span class="icon">⎋</span>
+            <span>Чыгуу (Logout)</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-viewport">
+        ${VIEWS[PAGE] ? VIEWS[PAGE]() : (VIEWS[isStudent ? 'student_home' : 'staff_home']())}
+      </main>
+    </div>
+  `;
+}
+
+// =========================================================================
+// 6. INITIALIZATION & DATA SEEDING (COMPLETELY CLEAN START)
+// =========================================================================
+
+(async () => {
+  DB = JSON.parse(localStorage.getItem('til_achar_db_v3') || 'null');
+
+  if (!DB || DB.v !== 3) {
+    const marathonStartDate = today(); // By default starts today/tomorrow, configurable in Admin
+
+    DB = {
+      v: 3,
+      startDate: marathonStartDate,
+      // 8 calendar dates for 8 chapters
+      chapterDates: Array.from({ length: 8 }, (_, i) => addDays(marathonStartDate, i)),
+      unlockedAll: false,
+      groups: GROUPS_SEED,
+      chapters: seed8Chapters(),
+      grammarTopics: seed4GrammarTopics(),
+      users: {},
+      progress: {},      // COMPLETELY CLEAN: 0 points, 0 completed chapters, 0 active days for all!
+      manualPoints: {},  // ZERO manual points!
+      messages: [
+        {
+          thread: 'all',
+          sender: 'admin',
+          text: 'Салам, урматтуу 7-класстын окуучулары! «Тил Ачар — Кичинекей ханзаада» 8 күндүк окуу марафонуна кош келипсиздер! Күн сайын 1 бөлүмдү окуп, тестти аткарыңыздар.',
+          ts: Date.now() - 3600000
+        }
+      ]
+    };
+
+    // Staff accounts
+    DB.users['admin'] = {
+      n: 'Нургүл эже (Администратор)',
+      nick: 'Админ',
+      r: 'admin',
+      g: 0,
+      h: await H('Admin_2026!'),
+      plainPass: 'Admin_2026!'
+    };
+
+    DB.users['teacher'] = {
+      n: 'Айгүл Мусаевна (Мугалим)',
+      nick: 'Мугалим',
+      r: 'teacher',
+      g: 0,
+      h: await H('Mugalim_2026!'),
+      plainPass: 'Mugalim_2026!'
+    };
+
+    // Seed all 23 real students with ZERO points
+    for (const s of STUDENTS_SEED) {
+      DB.users[s.u] = {
+        n: s.n,
+        nick: s.nick,
+        r: 's',
+        g: s.g,
+        h: await H(s.p),
+        plainPass: s.p
+      };
+    }
+
+    saveDB();
+  }
+
+  renderApp();
+})();
+
+addEventListener('storage', () => {
+  if (PAGE === 'chat') {
+    DB = JSON.parse(localStorage.getItem('til_achar_db_v3'));
+    renderApp();
+  }
+});
+</script>
+</body>
+</html>
